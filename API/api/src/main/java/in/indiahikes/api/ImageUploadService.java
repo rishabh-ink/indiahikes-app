@@ -34,7 +34,7 @@ public class ImageUploadService
 	        @FormDataParam ("file") FormDataContentDisposition fileDetails,
 	        @FormDataParam ("file") FormDataBodyPart bodyPart)
 	{
-		String uploadedFileLocation = "/tmp/" + fileDetails.getFileName();
+		String uploadedFileLocation = "./" + fileDetails.getFileName();
 
 		// save it
 		writeToFile(inputStream, uploadedFileLocation);

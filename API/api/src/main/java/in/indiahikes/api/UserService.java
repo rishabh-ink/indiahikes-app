@@ -24,12 +24,22 @@ public class UserService
 	@Produces (MediaType.APPLICATION_JSON)
 	public Response getUserDetails(@PathParam ("user_id") String userId)
 	{
+		UserDetails userDetails = getCurrentUserDetails(userId);
+		return Response.status(Response.Status.OK).entity(new ApiResponse(Response.Status.OK, userDetails)).build();
+	}
+
+	/**
+	 * @param UserId User Id of the User.
+	 * @return UserDetails for the UserId.
+	 */
+	private UserDetails getCurrentUserDetails(String userId)
+	{
 		UserDetails userDetails = new UserDetails();
 		userDetails.setFirstName("Srinivas");
 		userDetails.setLastName("Iyengar");
 		userDetails.setFacebookUrl("https://www.facebook.com/srini156");
 		userDetails.setScore(100);
 		userDetails.setProfileUrl("https://www.facebook.com/srini156/");
-		return Response.status(Response.Status.OK).entity(new ApiResponse(Response.Status.OK, userDetails)).build();
+		return userDetails;
 	}
 }

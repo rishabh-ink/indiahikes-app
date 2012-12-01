@@ -23,7 +23,7 @@ public class LeaderboardService
 	@GET
 	@Path ("{top}")
 	@Produces (MediaType.APPLICATION_JSON)
-	public Response getUserDetails(@PathParam ("top") @DefaultValue ("5") String topStr)
+	public Response getLeaderboard(@PathParam ("top") @DefaultValue ("5") String topStr)
 	{
 		int top = 0;
 		try
@@ -35,6 +35,16 @@ public class LeaderboardService
 			// Log Exception
 			top = 5;
 		}
+		List<UserDetails> leaderboard = getUserDetailsList(top);
+		return Response.status(Response.Status.OK).entity(new ApiResponse(Response.Status.OK, leaderboard)).build();
+	}
+
+	/**
+	 * @param top
+	 * @return
+	 */
+	private List<UserDetails> getUserDetailsList(int top)
+	{
 		List<UserDetails> leaderboard = new ArrayList<UserDetails>();
 		for (int i = 0; i < top; i++)
 		{
@@ -46,6 +56,6 @@ public class LeaderboardService
 			userDetails.setProfileUrl("https://www.facebook.com/srini156/");
 			leaderboard.add(userDetails);
 		}
-		return Response.status(Response.Status.OK).entity(new ApiResponse(Response.Status.OK, leaderboard)).build();
+		return leaderboard;
 	}
 }
