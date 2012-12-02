@@ -1,6 +1,8 @@
 package in.indiahikes.api;
 
 import in.indiahikes.api.data.ApiResponse;
+import in.indiahikes.api.data.PhotoDetails;
+import in.indiahikes.db.PhotoDAO;
 import in.indiahikes.flickr.ImageHandler;
 
 import java.io.InputStream;
@@ -33,7 +35,8 @@ public class ImageUploadService
 	        @FormDataParam ("file") FormDataBodyPart bodyPart,
 	        @FormDataParam ("latitude") @DefaultValue ("0") String latitude,
 	        @FormDataParam ("longitude") @DefaultValue ("0") String longitude,
-	        @FormDataParam ("accuracy") @DefaultValue ("0") String accuracy)
+	        @FormDataParam ("accuracy") @DefaultValue ("0") String accuracy,
+	        @FormDataParam ("facebook_username") @DefaultValue ("") String facebookUserName)
 	{
 
 		if ("".equals(latitude))
@@ -45,21 +48,21 @@ public class ImageUploadService
 			longitude = "0";
 		}
 		ImageHandler imageHandler = new ImageHandler();
-		String output = "";
+		PhotoDetails photoDetails = null;
 		try
 		{
-			output =
+			photoDetails =
 			        imageHandler.uploadImageToFlickr(inputStream, fileDetails.getFileName(), latitude, longitude,
 			                accuracy);
+			photoDetails.setFacebookUserName(facebookUserName);
+			PhotoDAO photodao = new PhotoDAO();
+			photodao.insert(photoDetails);
 		}
 		catch (Exception ex)
 		{
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
 			        .entity(new ApiResponse(Response.Status.INTERNAL_SERVER_ERROR, "Upload to Flickr Failed")).build();
 		}
-		// save it
-		// writeToFile(inputStream, uploadedFileLocation);
-
-		return Response.ok().entity(new ApiResponse(Response.Status.OK, output)).build();
+		return Response.ok().entity(new ApiResponse(Response.Status.OK, photoDetails)).build();
 	}
 }

@@ -2,6 +2,7 @@ package in.indiahikes.api;
 
 import in.indiahikes.api.data.ApiResponse;
 import in.indiahikes.api.data.UserDetails;
+import in.indiahikes.db.UserDAO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -34,11 +35,7 @@ public class UserService
 	 */
 	private UserDetails getCurrentUserDetails(String userId)
 	{
-		UserDetails userDetails = new UserDetails();
-		userDetails.setName("Srinivas Iyengar");
-		userDetails.setFacebookUrl("https://www.facebook.com/srini156");
-		userDetails.setScore(100);
-		userDetails.setProfileUrl("https://www.facebook.com/srini156/");
-		return userDetails;
+		UserDAO userDao = new UserDAO();
+		return userDao.getUserDetailsByUsername(userId);
 	}
 }

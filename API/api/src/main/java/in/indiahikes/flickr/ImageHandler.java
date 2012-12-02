@@ -1,5 +1,7 @@
 package in.indiahikes.flickr;
 
+import in.indiahikes.api.data.PhotoDetails;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -49,7 +51,7 @@ public class ImageHandler
 		}
 	}
 
-	public String uploadImageToFlickr(InputStream in, String metadata, String latitude, String longitude,
+	public PhotoDetails uploadImageToFlickr(InputStream in, String metadata, String latitude, String longitude,
 	        String accuracy) throws IOException, FlickrException, SAXException, ParserConfigurationException
 	{
 
@@ -75,6 +77,11 @@ public class ImageHandler
 		GeoInterface geoInterface = new GeoInterface(apiKey, sharedSecret, rest);
 		GeoData location = new GeoData(longitude, latitude, accuracy);
 		geoInterface.setLocation(photoId, location);
-		return photo.getMediumUrl();
+		PhotoDetails photoDetails = new PhotoDetails();
+		photoDetails.setFacebookUserName("");
+		photoDetails.setPhotoId(photoId);
+		photoDetails.setFlickLink(photo.getMediumUrl());
+
+		return photoDetails;
 	}
 }

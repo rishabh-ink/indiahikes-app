@@ -13,8 +13,8 @@ public class UserDetails
 	private int score;
 	@JsonProperty ("facebook_url")
 	private String facebookUrl;
-	@JsonProperty ("profile_url")
-	private String profileUrl;
+	@JsonProperty ("user_name")
+	private String userName;
 
 	/**
 	 * Default Constructor
@@ -75,17 +75,17 @@ public class UserDetails
 	/**
 	 * @return the profileUrl
 	 */
-	public String getProfileUrl()
+	public String getUserName()
 	{
-		return profileUrl;
+		return userName;
 	}
 
 	/**
 	 * @param profileUrl the profileUrl to set
 	 */
-	public void setProfileUrl(String profileUrl)
+	public void setUserName(String userName)
 	{
-		this.profileUrl = profileUrl;
+		this.userName = userName;
 	}
 
 }

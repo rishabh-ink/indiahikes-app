@@ -2,8 +2,8 @@ package in.indiahikes.api;
 
 import in.indiahikes.api.data.ApiResponse;
 import in.indiahikes.api.data.UserDetails;
+import in.indiahikes.db.UserDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.DefaultValue;
@@ -45,17 +45,8 @@ public class LeaderboardService
 	 */
 	private List<UserDetails> getUserDetailsList(int top)
 	{
-		List<UserDetails> leaderboard = new ArrayList<UserDetails>();
 
-		for (int i = 0; i < top; i++)
-		{
-			UserDetails userDetails = new UserDetails();
-			userDetails.setName("Srinivas Iyengar");
-			userDetails.setFacebookUrl("https://www.facebook.com/srini156");
-			userDetails.setScore(100);
-			userDetails.setProfileUrl("https://www.facebook.com/srini156/");
-			leaderboard.add(userDetails);
-		}
-		return leaderboard;
+		UserDAO userDao = new UserDAO();
+		return userDao.getLeaderboard(top);
 	}
 }
