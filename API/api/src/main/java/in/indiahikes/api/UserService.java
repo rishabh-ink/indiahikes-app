@@ -35,8 +35,7 @@ public class UserService
 	private UserDetails getCurrentUserDetails(String userId)
 	{
 		UserDetails userDetails = new UserDetails();
-		userDetails.setFirstName("Srinivas");
-		userDetails.setLastName("Iyengar");
+		userDetails.setName("Srinivas Iyengar");
 		userDetails.setFacebookUrl("https://www.facebook.com/srini156");
 		userDetails.setScore(100);
 		userDetails.setProfileUrl("https://www.facebook.com/srini156/");

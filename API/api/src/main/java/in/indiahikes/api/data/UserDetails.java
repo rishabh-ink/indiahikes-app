@@ -7,10 +7,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class UserDetails
 {
-	@JsonProperty ("first_name")
-	private String firstName;
-	@JsonProperty ("last_name")
-	private String lastName;
+	@JsonProperty ("name")
+	private String name;
 	@JsonProperty ("score")
 	private int score;
 	@JsonProperty ("facebook_url")
@@ -27,35 +25,19 @@ public class UserDetails
 	}
 
 	/**
-	 * @return the firstName
+	 * @return the name
 	 */
-	public String getFirstName()
+	public String getName()
 	{
-		return firstName;
+		return name;
 	}
 
 	/**
-	 * @param firstName the firstName to set
+	 * @param name the name to set
 	 */
-	public void setFirstName(String firstName)
+	public void setName(String name)
 	{
-		this.firstName = firstName;
-	}
-
-	/**
-	 * @return the lastName
-	 */
-	public String getLastName()
-	{
-		return lastName;
-	}
-
-	/**
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName)
-	{
-		this.lastName = lastName;
+		this.name = name;
 	}
 
 	/**

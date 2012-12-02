@@ -36,6 +36,14 @@ public class ImageUploadService
 	        @FormDataParam ("accuracy") @DefaultValue ("0") String accuracy)
 	{
 
+		if ("".equals(latitude))
+		{
+			latitude = "0";
+		}
+		if ("".equals(longitude))
+		{
+			longitude = "0";
+		}
 		ImageHandler imageHandler = new ImageHandler();
 		String output = "";
 		try

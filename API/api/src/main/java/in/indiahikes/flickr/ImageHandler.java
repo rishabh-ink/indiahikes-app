@@ -60,7 +60,6 @@ public class ImageHandler
 
 		// token which we might need to refresh
 		auth.setToken("72157632140430115-4f1e49d599d5e66c");
-		// auth.setToken(properties.getProperty("token"));
 		requestContext.setAuth(auth);
 		Flickr.debugRequest = false;
 		Flickr.debugStream = false;

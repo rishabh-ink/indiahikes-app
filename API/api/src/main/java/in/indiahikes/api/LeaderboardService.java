@@ -46,11 +46,11 @@ public class LeaderboardService
 	private List<UserDetails> getUserDetailsList(int top)
 	{
 		List<UserDetails> leaderboard = new ArrayList<UserDetails>();
+
 		for (int i = 0; i < top; i++)
 		{
 			UserDetails userDetails = new UserDetails();
-			userDetails.setFirstName("Srinivas");
-			userDetails.setLastName("Iyengar");
+			userDetails.setName("Srinivas Iyengar");
 			userDetails.setFacebookUrl("https://www.facebook.com/srini156");
 			userDetails.setScore(100);
 			userDetails.setProfileUrl("https://www.facebook.com/srini156/");
